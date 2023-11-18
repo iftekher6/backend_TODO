@@ -17,7 +17,7 @@ export const logiNew = async (req,res, next)=>{
     if(!isMatch) return next(new ErrorHandler('invalid Email or Password', 400));
    
 
-    sendCookie(user, res, "Welcome back busty", 200);
+    sendCookie(user, res, `welcome back ${user}`, 200);
 
     } catch (error) {
         next(error);    
