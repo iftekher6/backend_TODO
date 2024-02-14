@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewars/error.js";
-// import cookieParser from "cookie-parser";
+
 
 export const logiNew = async (req,res, next)=>{
     try {
