@@ -1,17 +1,17 @@
 import express from 'express';
 import { User } from '../models/user.js'; 
-import { getMyProfile, logiNew, logout, registerNew} from '../contorllers/user.js';
+import {getUserProfile, login, logout, registerUser} from '../contorllers/user.js';
 import { isAuthenticated } from '../middlewars/auth.js';
 
 const router = express.Router();
 
 
-router.post('/loginn', logiNew);
+router.post('/login', login);
 router.get('/logout', logout);
 
-router.post('/new', registerNew);
+router.post('/register', registerUser);
 
-router.get('/me', isAuthenticated,getMyProfile);
+router.get('/userProfile', isAuthenticated, getUserProfile);
 
 export default router;
 

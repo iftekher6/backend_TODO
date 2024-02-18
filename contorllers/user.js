@@ -5,7 +5,7 @@ import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewars/error.js";
 
 
-export const logiNew = async (req,res, next)=>{
+export const login = async (req,res, next)=>{
     try {
         const { email , password} = req.body;
     const user = await User.findOne({ email }).select("+password");
@@ -17,7 +17,7 @@ export const logiNew = async (req,res, next)=>{
     if(!isMatch) return next(new ErrorHandler('invalid Email or Password', 400));
    
 
-    sendCookie(user, res, `welcome back ${user}`, 200);
+    sendCookie(user, res, `welcome back ${user.name}`, 200);
 
     } catch (error) {
         next(error);    
@@ -25,7 +25,7 @@ export const logiNew = async (req,res, next)=>{
 };
 
 
-export const registerNew = async(req,res,next)=>{
+export const registerUser = async(req,res,next)=>{
    try {
     const {name, email, password}= req.body;
     let user = await User.findOne({email});
@@ -44,7 +44,7 @@ const hashedPassword = await bcrypt.hash(password, 10);
    
  
 
-export const getMyProfile =  (req,res)=>{
+export const getUserProfile =  (req,res)=>{
     
     res.status(200).json({
         success: true,
