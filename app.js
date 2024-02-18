@@ -17,12 +17,19 @@ config({
   path : './data/config.env',
 })
  
+const allowedOrigins = 'https://final-todo-umber.vercel.app/'
 
 //Using middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin : 'https://final-todo-umber.vercel.app/',
+  origin : (origin, callback) =>{
+    if(!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true)
+    }else{
+      callback(new Error('Not Allowed By CORSSS'))
+    }
+  },
   methods: ['GET','POST','PUT','DELETE'],
   credentials: true,
 }));
